@@ -5,6 +5,10 @@ console.log("Welcome to Employee Wage Computation Program on Master Branch");
 
 class Employee {
 
+    static wagesperhrs = 20;
+    static maxhrs = 100;
+    static maxdays = 20;
+
 
 
     constructor(name, company) {
@@ -45,48 +49,72 @@ class Employee {
     // }
 
 
-    computeBySwitch(partime) {
+    // computeBySwitch(partime) {
+    //     let income = 0;
+    //     let parthrs = 8;
+    //     let totalhrs = 8
+    //     let wagesperhrs = 20
+
+    //     switch (partime) {
+    //         case true:
+    //             totalhrs = totalhrs + parthrs;
+    //             income = totalhrs * wagesperhrs;
+    //             console.log(`the emp wages are ${income}`)
+    //             return income;
+    //         // break;
+
+
+    //         case false:
+    //             income = totalhrs * wagesperhrs;
+    //             console.log(`the emp wages are ${income}`)
+    //             return income
+    //         // break;;
+
+
+    //         default:
+    //             break;
+    //     }
+    // }
+
+
+    // wagesforMonth() {
+    //     let days = 20;
+    //     let income = 0;
+
+    //     let count = 0;
+
+    //     for (let i = 0; i < days; i++) {
+    //         let parttime = Math.random() < 0.5
+    //         income += this.computeBySwitch(parttime);
+    //     }
+    //     console.log(`the month salary is ${income}`);
+
+    // }
+
+
+    wagestillCondition() {
         let income = 0;
-        let parthrs = 8;
-        let totalhrs = 8
-        let wagesperhrs = 20
+        let totalhrs = 0;
+        let totaldays = 0;
+        while (totalhrs < Employee.maxhrs && totaldays < Employee.maxdays) {
+            let emp = (Math.random() < .5);
+            if (emp == 0) {
+                totalhrs += 0
+            } else {
+                totalhrs += 8
+            }
 
-        switch (partime) {
-            case true:
-                totalhrs = totalhrs + parthrs;
-                income = totalhrs * wagesperhrs;
-                console.log(`the emp wages are ${income}`)
-                return income;
-            // break;
+            totaldays++;
 
-
-            case false:
-                income = totalhrs * wagesperhrs;
-                console.log(`the emp wages are ${income}`)
-                return income
-            // break;;
-
-
-            default:
-                break;
         }
+        income += income + totalhrs * Employee.wagesperhrs;
+        console.log(`the total income ${income}`);
+
     }
 
-
-    wagesforMonth() {
-        let days = 20;
-        let income = 0;
-
-        let count = 0;
-
-        for (let i = 0; i < days; i++) {
-            let parttime = Math.random() < 0.5
-            income += this.computeBySwitch(parttime);
-        }
-        console.log(`the month salary is ${income}`);
-
+    computWage() {
+        this.wagestillCondition();
     }
-
 
 }
 
@@ -98,10 +126,13 @@ for (let i = 0; i < 10; i++) {
     emp.checkAttance();
 }
 
-emp.computeBySwitch(false);
+emp.computWage()
 
 
-emp.wagesforMonth()
+// emp.computeBySwitch(false);
+
+
+// emp.wagesforMonth()
 
 // emp.computeWages(false)
 
