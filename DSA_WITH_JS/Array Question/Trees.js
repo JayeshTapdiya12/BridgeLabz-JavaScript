@@ -61,6 +61,83 @@ class BinaryTree {
         this.root = null
     }
 
+    // insert  delete and search in the treeee
+
+    // insert the value()
+    insert(value) {
+        const newNode = new TreeNode(value);
+        if (!this.root) {
+            this.root = newNode;
+            return;
+        }
+        let curr = this.root;
+        while (true) {
+            if (curr.data > newNode.data) {
+                if (!curr.left) {
+                    curr.left = newNode
+                    return;
+                }
+                curr = curr.left;
+            } else {
+                if (!curr.right) {
+                    curr.right = newNode;
+                    return
+                }
+                curr = curr.right;
+            }
+        }
+    }
+
+    search(value) {
+        let curr = this.root;
+        while (curr) {
+            if (curr === value) {
+                return true;
+            }
+            if (curr > value) {
+                curr = curr.left;
+            } else {
+                curr = curr.right;
+            }
+        }
+        return false;
+    }
+
+    deletenode(root, value) {
+        if (!root) return null;
+
+        if (value < root.data) {
+            root.left = this.deletenode(root.left, value);
+
+        } else if (value > root.data) {
+            root.right = this.deletenode(root.right, value);
+        } else {
+
+            if (!root.left && !root.right) {
+                return null;
+            } else if (!root.left) {
+                return root.right;
+            } else if (!root.right) {
+                return root.left;
+            }
+            let minNode = this.getMin(root.right)
+            root.data = minNode.data
+            root.right = this.deletenode(root.right, minNode.data);
+        }
+
+        return root;
+    }
+
+    delete(value) {
+        this.root = this.deletenode(this.root, value);
+    }
+    getMin(node) {
+        while (node.left) {
+            node = node.left;
+        }
+        return node;
+    }
+
     // left root right
     inorder(node) {
         if (node === null) {
@@ -108,6 +185,23 @@ class BinaryTree {
         console.log(node.data)
     }
 }
+
+
+const bst = new BinaryTree();
+bst.insert(10);
+bst.insert(5);
+bst.insert(15);
+bst.insert(2);
+bst.insert(8);
+
+// console.log("In-order traversal:");
+// bst.inorder();
+
+console.log("Search 8:", bst.search(8));
+console.log("Search 100:", bst.search(100));
+
+bst.delete(5);
+console.log("After deleting 5:");
 
 
 const tree = new BinaryTree();
@@ -276,6 +370,7 @@ function isBts(node, min, max) {
 }
 
 console.log(isBts(tree.root, Number.min, Number.max))
+
 
 
 
