@@ -105,14 +105,11 @@ class BinaryTree {
 
     deletenode(root, value) {
         if (!root) return null;
-
         if (value < root.data) {
             root.left = this.deletenode(root.left, value);
-
         } else if (value > root.data) {
             root.right = this.deletenode(root.right, value);
         } else {
-
             if (!root.left && !root.right) {
                 return null;
             } else if (!root.left) {
@@ -124,7 +121,6 @@ class BinaryTree {
             root.data = minNode.data
             root.right = this.deletenode(root.right, minNode.data);
         }
-
         return root;
     }
 
@@ -194,8 +190,8 @@ bst.insert(15);
 bst.insert(2);
 bst.insert(8);
 
-// console.log("In-order traversal:");
-// bst.inorder();
+console.log("In-order traversal:");
+bst.inorder(bst.root);
 
 console.log("Search 8:", bst.search(8));
 console.log("Search 100:", bst.search(100));
@@ -203,6 +199,8 @@ console.log("Search 100:", bst.search(100));
 bst.delete(5);
 console.log("After deleting 5:");
 
+console.log("In-order traversal:");
+bst.inorder(bst.root);
 
 const tree = new BinaryTree();
 tree.root = new TreeNode(10);
@@ -213,6 +211,7 @@ tree.root.left.right = new TreeNode(6);
 tree.root.right.left = new TreeNode(5);
 tree.root.right.right = new TreeNode(4)
 
+console.log("\n")
 tree.inorderStack(tree.root)
 console.log("\n")
 tree.preorder(tree.root)
