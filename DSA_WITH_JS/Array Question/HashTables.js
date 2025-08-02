@@ -246,11 +246,7 @@ let map = new Map();
 for (let num of arr) {
     const complement = target - num;
     if (map.has(complement)) {
-        let count = map.get(complement)
-        while (count > 0) {
-            console.log(`${complement}, ${num}`);
-            count--;
-        }
+        console.log(`${complement}, ${num}`);
     }
     map.set(num, (map.get(num) || 0) + 1)
 }
